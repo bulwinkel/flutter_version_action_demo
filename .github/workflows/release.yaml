@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: bulwinkel/flutter-version-action@main
-        name: Update version in pubspec.yaml
+      - name: Update version in pubspec.yaml
+        uses: bulwinkel/flutter-version-action@main
         id: version_bot
         with:
           pubspec_path: pubspec.yaml
@@ -25,3 +25,10 @@ jobs:
         with:
           author_name: Version Bot
           message: Update version to ${{ steps.version_bot.outputs.new_version }}+${{ steps.version_bot.outputs.new_build }}
+
+      - name: Create releaes
+        uses: marvinpinto/action-automatic-releases@v1.2.1
+        with:
+#          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: ${{ steps.version_bot.outputs.new_version }}
+          prerelease: true

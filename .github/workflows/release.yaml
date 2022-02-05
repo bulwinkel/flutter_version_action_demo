@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: bulwinkel/flutter-version-action@main
+      - uses: bulwinkel/flutter-version-action@test
         name: Update version in pubspec.yaml
         with:
           pubspec_path: pubspec.yaml

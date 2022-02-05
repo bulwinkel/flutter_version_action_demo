@@ -1,0 +1,19 @@
+name: Update version and add release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  Create-Release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Create releaes
+        uses: marvinpinto/action-automatic-releases@v1.2.1
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true

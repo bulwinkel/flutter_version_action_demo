@@ -25,23 +25,4 @@ jobs:
         with:
           author_name: Version Bot
           message: Update version to ${{ steps.version_bot.outputs.new_version }}+${{ steps.version_bot.outputs.new_build }}
-
-    outputs:
-      commit_hash: ${{ steps.commit_bot.outputs.commit_long_sha }}
-      new_version: ${{ steps.version_bot.outputs.new_version }}
-
-  Create-Release:
-    runs-on: ubuntu-latest
-    needs:
-      - Update-Version-In-Pubspec
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ needs.Update-Version-In-Pubspec.outputs.commit_hash }}
-
-      - name: Create releaes
-        uses: marvinpinto/action-automatic-releases@v1.2.1
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{ needs.Update-Version-In-Pubspec.outputs.new_version }}
-          prerelease: true
+          tag: 'v${{ steps.version_bot.outputs.new_version }} --force'

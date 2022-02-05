@@ -16,8 +16,12 @@ jobs:
 
       - uses: bulwinkel/flutter-version-action@main
         name: Update version in pubspec.yaml
+        id: version_bot
         with:
           pubspec_path: pubspec.yaml
 
       - name: Add & Commit Version
         uses: EndBug/add-and-commit@v8.0.1
+        with:
+          author_name: Version Bot
+          message: Update version to ${{ steps.version_bot.new_version }}+${{ steps.version_bot.new_build }}

@@ -1,0 +1,19 @@
+name: Update version and add release
+
+# Run this workflow every time a new commit pushed to your repository
+on:
+  push:
+    branches: [ main ]
+
+
+jobs:
+  release:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+
+    steps:
+      - uses: actions/checkout@v2

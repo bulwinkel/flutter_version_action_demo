@@ -24,4 +24,4 @@ jobs:
         uses: EndBug/add-and-commit@v8.0.1
         with:
           author_name: Version Bot
-          message: Update version to ${{ steps.version_bot.new_version }}+${{ steps.version_bot.new_build }}
+          message: Update version to ${{ steps.version_bot.outputs.new_version }}+${{ steps.version_bot.outputs.new_build }}

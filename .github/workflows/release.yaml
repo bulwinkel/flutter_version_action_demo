@@ -17,4 +17,4 @@ jobs:
       - uses: bulwinkel/flutter-version-action@main
         name: Update version in pubspec.yaml
         with:
-          path: pubspec.yaml
+          pubspec_path: pubspec.yaml

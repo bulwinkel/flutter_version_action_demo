@@ -1,4 +1,4 @@
-name: Update version and add release
+name: Create a release when a tag is added
 
 on:
   push:

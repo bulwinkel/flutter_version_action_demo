@@ -25,6 +25,9 @@ jobs:
           author_name: Version Bot
           message: Update version to ${{ steps.version_bot.outputs.new_version }}+${{ steps.version_bot.outputs.new_build }}
 
+    outputs:
+      new_version: ${{ steps.version_bot.outputs.new_version }}
+
   Create-Release:
     runs-on: ubuntu-latest
     needs:
@@ -36,5 +39,5 @@ jobs:
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{ Update-Version-In-Pubspec.steps.version_bot.outputs.new_version }}
+          automatic_release_tag: ${{ needs.Update-Version-In-Pubspec.outputs.new_version }}
           prerelease: true
